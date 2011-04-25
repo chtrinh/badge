@@ -5,6 +5,20 @@ describe User do
     @attr = { :name => "Example User", :email => "user@example.com",
               :password => "asdfasdf", :password_confirmation => "asdfasdf"}
   end
+  
+  describe "Admin attribute validation" do
+    it "should return false when passing an admin attribute" do
+      no_admin = User.new(@attr.merge(:admin => "true"))
+      no_admin.admin.should be_false
+    end
+    
+    it "should return true using single assigment" do
+      is_admin = User.new(@attr)
+      is_admin.admin = true
+      is_admin.save
+      is_admin.admin.should be_true
+    end
+  end
 
   describe "Name and email validations" do 
     it "should create a new instance given valid attributes" do
@@ -19,11 +33,6 @@ describe User do
     it "should require an email" do
       no_email = User.new(@attr.merge(:email => ""))
       no_email.should_not be_valid
-    end
-    
-    it "should return false when passing an admin attribute" do
-      no_admin = User.new(@attr.merge(:admin => "true"))
-      no_admin.admin.should be_false
     end
   
     it "should accept valid email addresses" do

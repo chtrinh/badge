@@ -11,6 +11,12 @@
     </div>
   <% end %>
   
+  <% if @user.admin %>
+    <div class="field">
+      <h4>Admin powers</h4>
+    </div>
+  <% end %>
+  
   <div class="field">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
@@ -27,7 +33,7 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </div>
-
+  
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -11,7 +11,7 @@ class User
   key :password_salt, String
 
   key :friendship_id, String
-  belongs_to :friendship, :dependent => :destroy
+  belongs_to :friendship, :dependent => :destroy 
   
   attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation
