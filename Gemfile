@@ -5,6 +5,7 @@ gem 'SystemTimer', '>= 1.2.0'
 
 gem 'mongo_mapper'
 gem 'bson_ext'
+gem 'rails3-generators'
 
 gem 'jquery-rails', '>= 0.2.6'
 gem 'nifty-generators'
