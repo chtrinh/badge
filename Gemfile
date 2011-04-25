@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
+gem 'SystemTimer', '>= 1.2.0'
 
 gem 'mongo_mapper'
 gem 'bson_ext'
@@ -14,4 +15,6 @@ end
 
 group :test do
   gem 'rspec'
+  gem 'webrat'
 end
+gem "mocha", :group => :test

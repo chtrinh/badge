@@ -1,4 +1,6 @@
 Badge::Application.routes.draw do
+  get "hub/login"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
