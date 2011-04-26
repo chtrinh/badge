@@ -1,4 +1,6 @@
+<% title "#{@user.name}'s profile"%>
 <p id="notice"><%= notice %></p>
+<p>Email: <%= @user.email %></p>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

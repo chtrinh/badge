@@ -2,9 +2,9 @@ class Badges
   include MongoMapper::Document
   
   key :title, String
-  key :filename, String
   key :description, String
-  key :thumb, String
   key :tags, Array
-   
+  key :image_uid, String
+    
+  image_accessor :image
 end

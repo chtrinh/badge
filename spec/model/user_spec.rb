@@ -108,6 +108,23 @@ describe User do
         correct_user.should == @user
       end
     end
+  end
+  
+  describe "friendship relationships" do
+    before(:each) do
+      @user = User.create!(@attr)
+      @friend  = User.create!(@attr.merge(:email => "asdff@agsf.com", :name => "Billy"))
+    end
     
+    it "should return user model from friend's friendship" do
+      
+      @user.add_friend(@friend)
+      User.find(@friend.id).friendship_ids.include?(@user.id).should be_true
+    end
+    
+    it "should return nil from friend's friendship" do
+      @user.remove_friend(@friend)
+      User.find(@user.id).friendship_ids.include?(@friend.id).should be_false
+    end
   end
 end

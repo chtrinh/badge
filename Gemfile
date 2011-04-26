@@ -7,6 +7,10 @@ gem 'mongo_mapper'
 gem 'bson_ext'
 gem 'rails3-generators'
 
+gem 'rack-cache', :require => 'rack/cache'
+gem 'dragonfly', '~>0.8.2'
+gem 'rmagick', :require => 'RMagick'
+
 gem 'jquery-rails', '>= 0.2.6'
 gem 'nifty-generators'
 

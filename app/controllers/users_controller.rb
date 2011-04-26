@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_filter :authenticate, :except => [:new, :create]
+  # before_filter :check_permission, :only => [:index]
+  
   def index
     @users = User.all
 
