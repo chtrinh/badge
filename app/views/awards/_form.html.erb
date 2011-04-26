@@ -1,0 +1,36 @@
+<%= form_for(@award, :html => {:multipart => true}) do |f| %>
+  <% if @award.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@award.errors.count, "error") %> prohibited this award from being saved:</h2>
+
+      <ul>
+      <% @award.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <% if @award.image %>
+    <%= image_tag @award.default_thumb %>
+  <% end %>
+  <div class="field">
+    <%= f.label :file %><br />
+    <%= f.file_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :tag_input %><sub>use spaces or commas as seperators</sub><br />
+    <%= f.text_field :tag_input %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

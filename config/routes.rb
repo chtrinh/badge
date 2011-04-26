@@ -8,6 +8,7 @@ Badge::Application.routes.draw do
   
   root :to => "hub#index"
   
-  resources :users
+  resources :users  
+  resources :awards
   resources :sessions, :only => [:new, :create, :destroy]
 end

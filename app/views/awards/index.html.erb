@@ -1,0 +1,26 @@
+<% title "List Badges" %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Tags</th>
+    <th>Thumbnail</th>
+  </tr>
+
+<% @awards.each do |award| %>
+  <tr>
+    <td><%= h(award.title) %></td>
+    <td><%= truncate(award.description, :length => 25, :selector => ' ')%></td>
+    <td><%= award.tags.empty?  ? "No" : "Yes" %></td>
+    <td><%= image_tag award.default_thumb('50x50#') %>
+    <td><%= link_to 'Show', award %></td>
+    <td><%= link_to 'Edit', edit_award_path(award) %></td>
+    <td><%= link_to 'Destroy', award, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Award', new_award_path %>

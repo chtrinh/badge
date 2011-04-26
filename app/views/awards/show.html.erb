@@ -1,0 +1,14 @@
+<% title "Badge - #{@award.title}" %>
+<p id="notice"><%= notice %></p>
+
+<p>Title: <%= h(@award.title) %></p>
+<p>Description: <%= h(@award.description) %></p>
+<label>Filename: <%= h(@award.image.name)%></label><br>
+<%= image_tag @award.image.url %><br>
+<label>Thumbnail image </label><br>
+<%= image_tag @award.default_thumb %><br>
+<label>Tags</label><br>
+<%= @award.tags.empty?  ? "No Tags" : h(@award.tag_input.to_s) %><br>
+
+<%= link_to 'Edit', edit_award_path(@award) %> |
+<%= link_to 'Back', awards_path %>

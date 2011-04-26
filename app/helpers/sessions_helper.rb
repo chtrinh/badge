@@ -11,6 +11,10 @@ module SessionsHelper
     deny_access unless signed_in?
   end
   
+  def admin?
+    current_user.admin?
+  end
+  
   def check_permission
     redirect_to root_url, 
             :notice => "You are are not authorized to access this page." unless current_user.admin
