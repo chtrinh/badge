@@ -1,12 +1,13 @@
 Badge::Application.routes.draw do
-  get "hub/index"
 
   match '/signup',  :to => 'users#new'
   match '/logout',  :to => "sessions#destroy"
-  match '/signin',  :to =>"sessions#new"
+  match '/signin',  :to => "sessions#new"
   match '/media(/:dragonfly)', :to => Dragonfly[:images]
+  post '/email_badge', :to => "awards#email_badge"
   
-  root :to => "hub#index"
+  
+  root :to => "sessions#new"
   
   resources :users  
   resources :awards

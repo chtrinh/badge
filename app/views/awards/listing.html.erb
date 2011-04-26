@@ -1,0 +1,25 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+  
+  </script>
+<% end %>
+
+<div id="thumbnails">
+  <ul style="list-style:none outside none;">
+    <% @awards.each do |award| %>
+      <li><fieldset>
+        <%= image_tag award.default_thumb %>
+        <%= h(award.title) %>
+        <div style="float:right;">
+          <%= form_tag('/email_badge') do -%>
+            <%= label_tag 'Email:'%>
+            <%= text_field_tag 'email '%>
+            <%= hidden_field_tag 'id', award.id %>
+            <%= submit_tag 'Send' %>
+          <% end -%>
+        </div>
+        </fieldset>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -1,11 +1,12 @@
 class AwardsController < ApplicationController
-  before_filter :check_permission, :except => [:index]
+  before_filter :authenticate, :except => [:new, :create]
+  before_filter :check_permission, :except => [:index, :email_badge]
   
   def index
     @awards = Award.all
 
     respond_to do |format|
-      format.html { render 'canvas.html.erb' unless admin? }
+      format.html { render 'listing.html.erb' unless admin? }
     end
   end
 
@@ -77,6 +78,17 @@ class AwardsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(awards_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  def email_badge
+    @award = Award.find(params[:id])
+    @user = current_user
+    @email = params[:email]
+    
+    BadgeMailer.send_badge(@user, @email, @award)
+    respond_to do |format|
+      format.html { redirect_to(awards_url, :notice => "Badge email sent!") }
     end
   end
 end

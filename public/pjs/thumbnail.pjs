@@ -1,0 +1,59 @@
+/* @pjs transparent=true; */
+
+int imageCount = thumb_list.length;
+float spring = 0.05;
+float gravity = 0.03;
+Thumbnail[] thumbnails = new Thumbnail[imageCount];
+
+void setup() 
+{
+  size($('#container').width() - 200, 450);
+  noStroke();
+  smooth();
+  for (int i = 0; i < imageCount; i++) {
+    thumbnails[i] = new Thumbnail(random(width), random(height), thumb_list[i]);
+  }
+}
+
+void draw() 
+{
+  background(0,0);
+  for (int i = 0; i < imageCount; i++) {
+    thumbnails[i].collide();
+    thumbnails[i].move();
+    thumbnails[i].display();  
+  }
+}
+
+class Thumbnail {
+  float x, y;
+  PImage thumb; 
+  float xspeed = 2.8;  // Speed of the shape  
+  float yspeed = 2.2;  // Speed of the shape  
+  int xdirection = 1;  // Left or Right  
+  int ydirection = 1;  // Top to Bottom
+ 
+  Thumbnail(float xin, float yin, String imageUrl) {
+    x = xin;
+    y = yin;
+    thumb = loadImage(imageUrl);
+  } 
+  
+  void collide() {
+    if(x > width-thumb.width || x < 0){
+      xdirection *= -1;
+    }
+    if(y > height-thumb.height || y < 0) {
+      ydirection *= -1;
+    }
+  }
+  
+  void move() {
+    x = x + (xspeed * xdirection);
+    y = y + (yspeed * ydirection);
+  }
+  
+  void display() {
+    image(thumb, x, y);
+  }
+}
